@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="49f121a0-739d-45e9-8ff8-a9545e5c4f2a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/contexts/ArgumentContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/contexts/FunctionContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/contexts/ScriptContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/contexts/ScriptInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/contexts/ScriptLineCompilationContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/contexts/ScriptLineContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/contexts/ScriptLineObjectsContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/contexts/ScriptRuntimeContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/contexts/VariableContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/enums/ScriptLineExecutionPhase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/enums/ScriptLineType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/model/enums/VariableType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/service/ScriptCompiler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/service/ScriptRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/service/function/AbstractFunctionDefinition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/service/function/LogFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/service/function/NoOpFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/service/function/SetExpressionValueFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/service/function/SetValueFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/utils/ExpressionEvaluator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/utils/LexicalAnalyser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/adtsw/jos/utils/ObjectLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/adtsw/jcommons/ds/SortedArrayListTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/adtsw/jcommons/ds/SortedHashMapTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/adtsw/jcommons/jmx/JmxMetricProviderServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/adtsw/jcommons/metrics/MetricsRegistryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/adtsw/jcommons/utils/EncoderUtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/adtsw/jcommons/utils/EncryptionUtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/adtsw/jcommons/utils/TaskUtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/allclasses-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/allclasses.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/allpackages-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/ArgumentContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/FunctionContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/ScriptContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/ScriptInput.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/ScriptLineCompilationContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/ScriptLineContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/ScriptLineObjectsContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/ScriptRuntimeContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/VariableContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/class-use/ArgumentContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/class-use/FunctionContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/class-use/ScriptContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/class-use/ScriptInput.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/class-use/ScriptLineCompilationContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/class-use/ScriptLineContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/class-use/ScriptLineObjectsContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/class-use/ScriptRuntimeContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/class-use/VariableContext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/contexts/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/enums/ScriptLineExecutionPhase.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/enums/ScriptLineType.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/enums/VariableType.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/enums/class-use/ScriptLineExecutionPhase.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/enums/class-use/ScriptLineType.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/enums/class-use/VariableType.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/enums/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/enums/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/model/enums/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/ScriptCompiler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/ScriptRunner.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/class-use/ScriptCompiler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/class-use/ScriptRunner.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/AbstractFunctionDefinition.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/LogFunction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/NoOpFunction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/SetExpressionValueFunction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/SetValueFunction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/class-use/AbstractFunctionDefinition.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/class-use/LogFunction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/class-use/NoOpFunction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/class-use/SetExpressionValueFunction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/class-use/SetValueFunction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/function/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/service/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/utils/ExpressionEvaluator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/utils/LexicalAnalyser.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/utils/ObjectLoader.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/utils/class-use/ExpressionEvaluator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/utils/class-use/LexicalAnalyser.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/utils/class-use/ObjectLoader.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/utils/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/utils/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/com/adtsw/jos/utils/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/constant-values.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/deprecated-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/element-list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/help-doc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/index-all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/external/jquery/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-bg_glass_55_fbf9ee_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-bg_glass_65_dadada_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-bg_glass_75_dadada_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-bg_glass_75_e6e6e6_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-bg_glass_95_fef1ec_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-icons_222222_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-icons_2e83ff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-icons_454545_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-icons_888888_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/images/ui-icons_cd0a0a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jquery-3.5.1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jquery-ui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jquery-ui.structure.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jquery-ui.structure.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jszip-utils/dist/jszip-utils-ie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jszip-utils/dist/jszip-utils-ie.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jszip-utils/dist/jszip-utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jszip-utils/dist/jszip-utils.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jszip/dist/jszip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/jquery/jszip/dist/jszip.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/member-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/overview-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/overview-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/package-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/resources/glass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/resources/x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/apidocs/type-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/javadoc-bundle-options/javadoc-options-javadoc-resources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/jos-1.0.0-javadoc.jar.asc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/jos-1.0.0-sources.jar.asc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/jos-1.0.0.jar.asc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/jos-1.0.0.pom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/jos-1.0.0.pom.asc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="0vlr5nvr" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="23kXyBNEmX78a6kQ8Ul5jQul3ua" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/adtsw/jos" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="org.mvnsearch.intellij.plugin.zookeeper.ui.ZkProjectConfigurable" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/adtsw/jos" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.adtsw.jos.utils" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49f121a0-739d-45e9-8ff8-a9545e5c4f2a" name="Changes" comment="" />
+      <created>1642279312442</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642279312442</updated>
+    </task>
+    <servers />
+  </component>
+</project>

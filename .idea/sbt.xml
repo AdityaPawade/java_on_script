@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaSbtSettings">
+    <option name="customLauncherEnabled" value="true" />
+    <option name="customLauncherPath" value="/usr/local/Cellar/sbt@0.13/0.13.17_1/libexec/bin/sbt-launch.jar" />
+    <option name="customVMPath" />
+    <option name="vmParameters" value="-Xms3G -Xmx3G -XX:MetaspaceSize=512M" />
+  </component>
+</project>
