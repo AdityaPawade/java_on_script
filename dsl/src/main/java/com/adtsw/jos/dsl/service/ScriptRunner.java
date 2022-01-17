@@ -1,24 +1,26 @@
 package com.adtsw.jos.dsl.service;
 
-import com.adtsw.jos.dsl.service.function.AbstractFunctionDefinition;
-import com.adtsw.jos.dsl.service.function.LogFunction;
-import com.adtsw.jos.dsl.service.function.SetExpressionValueFunction;
-import com.adtsw.jos.dsl.service.function.SetValueFunction;
-import com.adtsw.jos.dsl.model.contexts.ScriptContext;
-import com.adtsw.jos.dsl.model.contexts.ScriptRuntimeContext;
-import com.adtsw.jos.dsl.model.contexts.ScriptInput;
-import com.adtsw.jos.dsl.model.contexts.FunctionContext;
-import com.adtsw.jos.dsl.model.contexts.VariableContext;
-import com.adtsw.jos.dsl.model.contexts.ArgumentContext;
-import com.adtsw.jos.dsl.model.contexts.ScriptLineContext;
-import com.adtsw.jos.dsl.utils.ExpressionEvaluator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import com.adtsw.jos.dsl.model.contexts.FunctionContext;
+import com.adtsw.jos.dsl.model.contexts.ScriptContext;
+import com.adtsw.jos.dsl.model.contexts.ScriptInput;
+import com.adtsw.jos.dsl.model.contexts.ScriptLineContext;
+import com.adtsw.jos.dsl.model.contexts.ScriptRuntimeContext;
+import com.adtsw.jos.dsl.model.enums.ScriptLineExecutionPhase;
+import com.adtsw.jos.dsl.service.function.AbstractFunctionDefinition;
+import com.adtsw.jos.dsl.service.function.LogFunction;
+import com.adtsw.jos.dsl.service.function.SetExpressionValueFunction;
+import com.adtsw.jos.dsl.service.function.SetValueFunction;
+import com.adtsw.jos.dsl.utils.ExpressionEvaluator;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ScriptRunner {
 
@@ -74,6 +76,9 @@ public class ScriptRunner {
                 evaluateFunctionCallContext(lineContext, recursionDepth);
                 break;
             }
+            default:
+                throw new RuntimeException("Unsupported line type " + lineContext.getLineNumber()
+                        + " : " + lineContext.getLine());
         }
     }
 
@@ -98,7 +103,8 @@ public class ScriptRunner {
     }
 
     private void executeForBlock(ScriptLineContext lineContext, int recursionDepth) {
-        evaluateLineContexts(lineContext.getBlockLines(), recursionDepth + 1);
+        List<ScriptLineContext> blockLines = getRunTimeBlockLines(lineContext);
+        evaluateLineContexts(blockLines, recursionDepth + 1);
     }
 
     private void executeIfBlock(ScriptLineContext lineContext, int recursionDepth) {
@@ -107,8 +113,16 @@ public class ScriptRunner {
         Object evaluationResult = (new ExpressionEvaluator()).evaluate(compiledLexemes);
         //logger.trace(evaluationResult);
         if((Boolean) evaluationResult) {
-            evaluateLineContexts(lineContext.getBlockLines(), recursionDepth + 1);
+            List<ScriptLineContext> blockLines = getRunTimeBlockLines(lineContext);
+            evaluateLineContexts(blockLines, recursionDepth + 1);
         }
+    }
+
+    private List<ScriptLineContext> getRunTimeBlockLines(ScriptLineContext lineContext) {
+        List<ScriptLineContext> blockLines = lineContext.getBlockLines().stream().filter(line -> {
+            return ScriptLineExecutionPhase.RUN_TIME.equals(line.getExecutionPhase());
+        }).collect(Collectors.toList());
+        return blockLines;
     }
 
     private Object[] replaceRuntimeVariables(Object[] originalLexemes) {

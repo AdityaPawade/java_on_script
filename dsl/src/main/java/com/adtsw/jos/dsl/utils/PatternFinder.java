@@ -6,7 +6,7 @@ public class PatternFinder {
 
     protected final static String negativeValuePrefixRegex = "-";
     protected final static String variableNameOrValueRegex = "a-zA-Z0-9\\_\\.";
-    protected final static String operatorRegex = "\\!\\*\\+\\-\\/\\<\\>\\=";
+    protected final static String operatorRegex = "\\!\\*\\+\\-\\/\\<\\>\\=\\%";
     protected final static String bracketsRegex = "\\(\\)";
     protected final static String separatorsRegex = "\\,\\:\\|\\&";
     protected final static String operatorOrSymbolOrBracketsRegex = operatorRegex + separatorsRegex + bracketsRegex;

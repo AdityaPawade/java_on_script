@@ -379,7 +379,7 @@ public class ScriptCompiler {
         // add if condition to end of conditional block
         forBlockLines.add(forBlockLines.size() - 1, allForScriptLines.get(1));
         // remove incremental action since it is included in the loop
-        allForScriptLines.get(3).setExecutionPhase(ScriptLineExecutionPhase.NONE);
+        // allForScriptLines.get(3).setExecutionPhase(ScriptLineExecutionPhase.NONE);
         
         lineContext.setBlockLines(allForScriptLines);
     }
