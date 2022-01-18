@@ -5,28 +5,33 @@ import java.util.regex.Pattern;
 public class PatternFinder {
 
     protected final static String negativeValuePrefixRegex = "-";
-    protected final static String variableNameOrValueRegex = "a-zA-Z0-9\\_\\.";
+    protected final static String variableNameStartRegex = "a-zA-Z";
+    protected final static String variableNameRegex = "a-zA-Z0-9\\_\\.";
+    protected final static String variableNameOrValueRegex = "a-zA-Z0-9\\_\\.\\\"\\ ";
     protected final static String operatorRegex = "\\!\\*\\+\\-\\/\\<\\>\\=\\%";
     protected final static String bracketsRegex = "\\(\\)";
     protected final static String separatorsRegex = "\\,\\:\\|\\&";
     protected final static String operatorOrSymbolOrBracketsRegex = operatorRegex + separatorsRegex + bracketsRegex;
-    protected final static String variableNameOrValueOrSymbolRegex = variableNameOrValueRegex + operatorRegex + separatorsRegex;
-
+    protected final static String variableNameOrValueOrSymbolRegex = variableNameOrValueRegex + operatorRegex + separatorsRegex + bracketsRegex;
+    
+    protected final static String validVariableNameRegex = "[" + variableNameStartRegex + "]([" + variableNameRegex + "]+)?[=]";
+    protected final static String optionalValidVariableNameRegex = "(" + validVariableNameRegex + ")?";
+    
     protected final static Pattern alphaNumericPattern = Pattern.compile(
-        "^[" + variableNameOrValueRegex + "]+[=]" +
+        "^" + validVariableNameRegex +
             "([" + negativeValuePrefixRegex + "])?" + "[" + variableNameOrValueRegex + "]+$"
     );
     protected final static Pattern expressionPattern = Pattern.compile(
-        "^[" + variableNameOrValueRegex + "]+[=]" +
-            "[" + variableNameOrValueRegex + "]+[" + variableNameOrValueOrSymbolRegex + "]+$"
+        "^" + validVariableNameRegex +
+        "([" + negativeValuePrefixRegex + "])?" + "[" + variableNameOrValueOrSymbolRegex + "]+$"
     );
     protected final static Pattern assignmentFunctionCallPattern = Pattern.compile(
-        "^[" + variableNameOrValueRegex + "]+[=]" +
-            "[" + variableNameOrValueRegex + "]+[\\(][" + variableNameOrValueOrSymbolRegex + "]++[\\)]$"
+        "^" + validVariableNameRegex +
+            "[" + variableNameOrValueRegex + "]+[\\(][" + variableNameOrValueOrSymbolRegex + "]+[\\)]$"
     );
     protected final static Pattern functionCallPattern = Pattern.compile(
-        "^([" + variableNameOrValueRegex + "]+[=])?" +
-            "[" + variableNameOrValueRegex + "]+[\\(][" + variableNameOrValueOrSymbolRegex + "]++[\\)]$"
+        "^" + optionalValidVariableNameRegex +
+            "[" + variableNameOrValueRegex + "]+[\\(][" + variableNameOrValueOrSymbolRegex + "]+[\\)]$"
     );
     protected final static Pattern tokenMatcherPattern = Pattern.compile("[" + operatorOrSymbolOrBracketsRegex + "]+");
 
@@ -36,11 +41,40 @@ public class PatternFinder {
     }
 
     public static boolean isFunctionPattern(String objectValue) {
-        return functionCallPattern.matcher(objectValue).matches();
+        boolean matches = functionCallPattern.matcher(objectValue).matches();
+        boolean firstBracketEncountered = false;
+        if(matches && objectValue.contains("(")) {
+            for (int i = 0; i < objectValue.length() && matches; i++) {
+                if(i > 0 && objectValue.charAt(i) == '(') {
+                    if(!firstBracketEncountered) {
+                        if(!Character.isLetterOrDigit(objectValue.charAt(i - 1))) {
+                            matches = false;
+                        }
+                        firstBracketEncountered = true;
+                    } else {
+                        if(Character.isLetterOrDigit(objectValue.charAt(i - 1))) {
+                            matches = false;
+                        }
+                    }
+                }
+            }
+        }
+        return matches;
     }
 
     public static boolean isExpressionPattern(String objectValue) {
-        return expressionPattern.matcher(objectValue).matches();
+        boolean matches = expressionPattern.matcher(objectValue).matches();
+        if(matches && objectValue.contains("(")) {
+            for (int i = 0; i < objectValue.length() && matches; i++) {
+                if(i > 0 && objectValue.charAt(i) == '(') {
+                    char previousChar = objectValue.charAt(i - 1);
+                    if(Character.isLetterOrDigit(previousChar)) {
+                        matches = false;
+                    }
+                }
+            }
+        }
+        return matches;
     }
 
     public static boolean isValuePattern(String objectValue) {

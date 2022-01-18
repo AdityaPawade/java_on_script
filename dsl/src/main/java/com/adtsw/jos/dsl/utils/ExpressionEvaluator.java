@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class ExpressionEvaluator {
 
-    private final Pattern tokenPattern = Pattern.compile("((([0-9]*[.])?[0-9]+)|([\\+\\-\\*\\/\\(\\)\\^]))");
+    private final Pattern tokenPattern = Pattern.compile("((([0-9]*[.])?[0-9]+)|([\\+\\-\\*\\/\\(\\)\\^\\%]))");
 
     private final Map<String, Integer> operatorPriority = new HashMap<>() {{
         put("-", 0);
@@ -16,6 +16,7 @@ public class ExpressionEvaluator {
         put("/", 1);
         put("*", 1);
         put("^", 2);
+        put("%", 2);
         put(">", 1);
         put("<", 1);
         put(">=", 1);
@@ -28,7 +29,7 @@ public class ExpressionEvaluator {
     }};
 
     private final Set<String> binaryOperators = new HashSet<>() {{
-        add("-");add("+");add("/");add("*");add("^");
+        add("-");add("+");add("/");add("*");add("^");add("%");
         add(">");add("<");add(">=");add("<=");add("==");add("!=");add("&&");add("||");
     }};
 
@@ -210,6 +211,9 @@ public class ExpressionEvaluator {
                 break;
             case "^":
                 result = ArithmeticUtil.pow((Number) operand2, (Number) operand1);
+                break;
+            case "%":
+                result = ArithmeticUtil.mod((Number) operand2, (Number) operand1);
                 break;
             case ">":
                 result = ArithmeticUtil.moreThan((Number) operand2, (Number) operand1);

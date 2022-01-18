@@ -22,11 +22,14 @@ import com.adtsw.jos.dsl.utils.ExpressionEvaluator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import lombok.Getter;
+
 public class ScriptRunner {
 
     private static final Logger logger = LogManager.getLogger(ScriptRunner.class);
 
     private final ScriptContext scriptContext;
+    @Getter
     private final ScriptRuntimeContext runtimeContext;
     private final Map<String, AbstractFunctionDefinition> functionDefinitions;
 
@@ -40,8 +43,10 @@ public class ScriptRunner {
             put("LOG", new LogFunction());
             put("SETVALUE", new SetValueFunction());
             put("SETEXPRESSIONVALUE", new SetExpressionValueFunction());
-            putAll(customFunctionDefinitions);
         }};
+        customFunctionDefinitions.forEach((functionName, functionDefinition) -> {
+            this.functionDefinitions.put(functionName.toUpperCase(), functionDefinition);
+        });
     }
 
     public void run() {

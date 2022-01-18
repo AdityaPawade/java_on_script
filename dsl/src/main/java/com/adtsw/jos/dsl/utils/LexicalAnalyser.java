@@ -10,10 +10,10 @@ import java.util.regex.Pattern;
 
 public class LexicalAnalyser {
 
-    private static final String variableNameRegex = "[a-zA-Z0-9\\_\\.]+";
+    private static final String variableNameRegex = "[a-zA-Z0-9\\_\\.\\\"\\ ]+";
     private static final String numericRegex = "(-)?([0-9]*[.])?[0-9]+";
     private static final String variableNameOrNumericValue = "(" + variableNameRegex + ")|(" + numericRegex + ")";
-    private static final String arithmeticOperatorRegex = "(\\+)|(\\-)|(\\*)|(\\/)|(\\^)";
+    private static final String arithmeticOperatorRegex = "(\\+)|(\\-)|(\\*)|(\\/)|(\\^)|(\\%)";
     private static final String booleanOperatorRegex = "(\\=\\=)|(\\!\\=)|(\\<\\=)|(\\>\\=)|(\\<)|(\\>)|(\\&\\&)|(\\|\\|)|(\\!)|(\\=)";
     private static final String bracketsRegex = "(\\()|(\\))";
     private static final String separatorsRegex = "(\\,)|(\\:)";

@@ -6,6 +6,8 @@ import com.adtsw.jos.dsl.model.enums.ScriptLineExecutionPhase;
 import com.adtsw.jos.dsl.model.enums.ScriptLineType;
 import com.adtsw.jos.dsl.utils.LexicalAnalyser;
 import com.adtsw.jos.dsl.utils.PatternFinder;
+import com.adtsw.jos.dsl.utils.ScriptLineAnalyser;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class ScriptCompiler {
 
@@ -91,35 +94,36 @@ public class ScriptCompiler {
     }
 
     private void compileScriptLine(ScriptLineCompilationContext compilationContext) {
-        String line = compilationContext.getCurrentLine().replaceAll("\\s", "");
+        
+        String line = ScriptLineAnalyser.getCleanLine(compilationContext.getCurrentLine());
         int lineNumber = compilationContext.getCurrentLineNumber();
-        if(StringUtils.isNotEmpty(line) && !line.startsWith("//")
-            && !line.endsWith("{") && !line.endsWith("}") && !line.endsWith(";")) {
+        
+        boolean isComment = isLineAComment(line);
+        boolean isBlockStart = isLineStartOfABlock(line);
+
+        if(isLineIncomplete(line)) {
             compilationContext.getIncompleteLines().append(line);
             updateIncompleteLines(compilationContext, line, lineNumber);
             return;
         }
-        if(compilationContext.getIncompleteLines().length() != 0) {
-            compilationContext.getAllScriptLines().add(new ScriptLineContext(
-                lineNumber, line, ScriptLineType.INCOMPLETE_LINE, null, null,
-                ScriptLineExecutionPhase.NONE, null
-            ));
+        if(compilationContext.handlingIncompleteLines()) {
+            updateIncompleteLines(compilationContext, line, lineNumber);
             line = compilationContext.getIncompleteLines().append(line).toString();
             lineNumber = compilationContext.getIncompleteLineNumber();
             compilationContext.setIncompleteLineNumber(-1);
             compilationContext.getIncompleteLines().delete(0, compilationContext.getIncompleteLines().length());
         }
 
-        if(compilationContext.getNumBlockStarted() > 0) {
-            if(!line.endsWith("}")) {
-                if(line.endsWith("{")) {
+        if(compilationContext.handlingIncompleteBlocks()) {
+            if(!isLineEndOfABlock(line)) {
+                if(isLineStartOfABlock(line)) {
                     compilationContext.setNumBlockStarted(compilationContext.getNumBlockStarted() + 1);
                 }
                 updateBlockLines(compilationContext, line, lineNumber);
                 return;
             } else {
                 compilationContext.setNumBlockStarted(compilationContext.getNumBlockStarted() - 1);
-                if(compilationContext.getNumBlockStarted() > 0) {
+                if(compilationContext.handlingIncompleteBlocks()) {
                     updateBlockLines(compilationContext, line, lineNumber);
                 } else {
                     handleBlockCompletion(compilationContext, line, lineNumber);
@@ -129,25 +133,44 @@ public class ScriptCompiler {
         }
         
         line = line.replaceAll(";$", "");
-        boolean blockStart = line.endsWith("{");
-        if(blockStart) {
+
+        if(!isComment && isBlockStart) {
             compilationContext.setNumBlockStarted(compilationContext.getNumBlockStarted() + 1);
             line = line.replaceAll("\\{$", "");
         }
 
-        ScriptLineContext currentLineContext = new ScriptLineContext(lineNumber, line, getScriptLineType(line));
+        ScriptLineType scriptLineType = getScriptLineType(line);
+        ScriptLineContext currentLineContext = new ScriptLineContext(lineNumber, line, scriptLineType);
         compilationContext.setCurrentLineContext(currentLineContext);
         compilationContext.setCompiledLine(line);
 
-        if(!blockStart) {
+        if(!compilationContext.handlingIncompleteBlocks()) {
             setLineTypeSpecificContext(
                 compilationContext, currentLineContext.getLineType(),
-                compilationContext.getNumBlockStarted() == 0
+                !compilationContext.handlingIncompleteBlocks()
             );
         }
 
         //logger.trace(lineNumber - 1 + " : " + line);
         compilationContext.getAllScriptLines().add(lineNumber - 1, currentLineContext);
+    }
+
+    private boolean isLineIncomplete(String line) {
+        return StringUtils.isNotEmpty(line) && !isLineAComment(line)
+            && !isLineStartOfABlock(line) && !isLineEndOfABlock(line) && 
+            !line.endsWith(";");
+    }
+
+    private boolean isLineEndOfABlock(String line) {
+        return line.endsWith("}");
+    }
+
+    private boolean isLineStartOfABlock(String line) {
+        return line.endsWith("{");
+    }
+
+    private boolean isLineAComment(String line) {
+        return line.startsWith("//");
     }
 
     private void handleBlockCompletion(ScriptLineCompilationContext compilationContext, String line, int lineNumber) {
@@ -188,10 +211,11 @@ public class ScriptCompiler {
         if(compilationContext.getIncompleteLineNumber() == -1) {
             compilationContext.setIncompleteLineNumber(lineNumber);
         } else {
-            compilationContext.getAllScriptLines().add(new ScriptLineContext(
+            ScriptLineContext incompleteScriptLineContext = new ScriptLineContext(
                 lineNumber, line, ScriptLineType.INCOMPLETE_LINE, null, null,
                 ScriptLineExecutionPhase.NONE, null
-            ));
+            );
+            compilationContext.getAllScriptLines().add(incompleteScriptLineContext);
         }
     }
 
@@ -276,21 +300,30 @@ public class ScriptCompiler {
             objectsContext.getVariableName(), objectsContext.getOriginalValue(), objectsContext.getCompiledValue(),
             objectsContext.getOriginalLexemes(), objectsContext.getCompiledLexemes()
         ));
+        
         String compiledObjectValue = objectsContext.getCompiledValue();
-        String[] compiledObjectValueSplits = compiledObjectValue.split("\\(");
-        String[] compiledArgs = compiledObjectValueSplits[1].split("\\)")[0].split(",");
+        String[] compiledArgs = getArgs(compiledObjectValue);
         ArgumentContext[] compiledArgsList = getArguments(compiledArgs);
+        
         String originalObjectValue = objectsContext.getOriginalValue();
-        String[] originalObjectValueSplits = originalObjectValue.split("\\(");
-        String[] originalArgs = originalObjectValueSplits[1].split("\\)")[0].split(",");
+        String[] originalArgs = getArgs(originalObjectValue);
         ArgumentContext[] originalArgsList = getArguments(originalArgs);
-        String fn = originalObjectValueSplits[0].toUpperCase();
+        
+        String fn = originalObjectValue.split("\\(")[0].toUpperCase();
+        
         FunctionContext functionContext = new FunctionContext(fn, originalArgsList, compiledArgsList);
         lineContext.setFunctionContext(functionContext);
         if(objectsContext.getVariableName() != null) {
             compilationContext.getRunTimeVariables().add(objectsContext.getVariableName());
         }
         evaluateFunctionCall(lineContext, functionContext);
+    }
+
+    private String[] getArgs(String objectValue) {
+        String[] objectValueSplits = objectValue.split("\\(");
+        String argString = objectValue.substring(objectValueSplits[0].length() + 1, objectValue.length() - 1);
+        String[] compiledArgs = argString.split(",");
+        return compiledArgs;
     }
 
     private ArgumentContext[] getArguments(String[] args) {

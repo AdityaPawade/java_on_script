@@ -31,4 +31,12 @@ public class ScriptLineCompilationContext {
     private final List<ScriptLineContext> allScriptLines = new ArrayList<>();
     private final List<ScriptLineContext> compileTimeScriptLines = new ArrayList<>();
     private final List<ScriptLineContext> runTimeScriptLines = new ArrayList<>();
+
+    public boolean handlingIncompleteLines() {
+        return getIncompleteLines().length() != 0;
+    }
+
+    public boolean handlingIncompleteBlocks() {
+        return getNumBlockStarted() > 0;
+    }
 }
