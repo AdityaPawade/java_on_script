@@ -18,7 +18,7 @@ JoS is available on [Maven Central](http://search.maven.org/#search). You just h
 <dependency>
   <groupId>com.adtsw</groupId>
   <artifactId>jos</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
