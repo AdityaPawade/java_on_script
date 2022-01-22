@@ -10,17 +10,16 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ScriptLineObjectsContext {
+public class ScriptLineTokensContext {
 
     private String variableName;
     private String originalValue;
-    private String compiledValue;
     private Object[] originalLexemes;
     private Object[] compiledLexemes;
     private final List<String> computedObjects;
     private final List<String> yetToBeComputedObjects;
 
-    public ScriptLineObjectsContext() {
+    public ScriptLineTokensContext() {
         this.computedObjects = new ArrayList<>();
         this.yetToBeComputedObjects = new ArrayList<>();
     }

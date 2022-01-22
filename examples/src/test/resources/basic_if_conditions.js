@@ -3,8 +3,6 @@
 test_variable = 14;
 test_variable_copy_expression = 28;
 
-test_v = test_function(param_a: 222, param_b: test_variable, param_c: "string_variable");
-
 if(test_variable_copy_expression != null && 
     test_variable != 2) {
     log("test variable");

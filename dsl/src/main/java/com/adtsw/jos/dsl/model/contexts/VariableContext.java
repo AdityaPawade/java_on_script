@@ -12,8 +12,4 @@ import lombok.Setter;
 public class VariableContext {
 
     private String name;
-    private String originalValue;
-    private String compiledValue;
-    private Object[] originalLexemes;
-    private Object[] compiledLexemes;
 }

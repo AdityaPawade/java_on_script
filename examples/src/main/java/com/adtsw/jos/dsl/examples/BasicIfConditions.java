@@ -15,8 +15,10 @@ public class BasicIfConditions {
         
         URL scriptURL = ClassLoader.getSystemResource("basic_if_conditions.js");
         String resourceDirectory = (new File(scriptURL.getPath())).getParentFile().getPath();
-        ScriptCompiler compiler = new ScriptCompiler("basic_if_conditions", resourceDirectory, new HashMap<>());
-        ScriptContext scriptContext = compiler.compile();
+        ScriptCompiler scriptCompilerV2 = new ScriptCompiler("basic_if_conditions", resourceDirectory, new HashMap<>());
+        ScriptContext scriptContext = scriptCompilerV2.compile();
+        //ScriptCompiler compiler = new ScriptCompiler("basic_if_conditions", resourceDirectory, new HashMap<>());
+        //ScriptContext scriptContext = compiler.compile();
         ScriptRunner scriptRunner = new ScriptRunner(scriptContext, new ScriptInput(new HashMap<>()), new HashMap<>());
         scriptRunner.run();
         Object incremental_variable = scriptRunner.getRuntimeContext().getRunTimeVariables().get("incremental_variable");

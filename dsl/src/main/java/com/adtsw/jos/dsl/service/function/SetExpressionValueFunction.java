@@ -11,7 +11,7 @@ public class SetExpressionValueFunction extends AbstractFunctionDefinition {
     @Override
     public void execute(ScriptLineContext lineContext, ScriptRuntimeContext runtimeContext) {
         String objectName = lineContext.getVariableContext().getName();
-        Object[] originalLexemes = lineContext.getVariableContext().getOriginalLexemes();
+        Object[] originalLexemes = lineContext.getFunctionContext().getOriginalArgs()[0].getLexemes();
         Object[] compiledLexemes = replaceRuntimeVariables(runtimeContext, originalLexemes);
         Object evaluationResult = (new ExpressionEvaluator()).evaluate(compiledLexemes);
         runtimeContext.getRunTimeVariables().put(objectName, evaluationResult);
