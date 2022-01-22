@@ -18,7 +18,7 @@ JoS is available on [Maven Central](http://search.maven.org/#search). You just h
 <dependency>
   <groupId>com.adtsw</groupId>
   <artifactId>jos</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
@@ -36,4 +36,37 @@ The ***snapshot version*** has not been released yet.
   <artifactId>jos</artifactId>
   <version>TBD</version>
 </dependency>
+```
+
+Sample Script
+```
+    // init variables
+    test_variable = 14;
+    test_variable_expression = test_variable * 2;
+    test_diff = 0.0;
+    
+    // conditions
+    if(test_variable != 0) {
+        
+        test_diff = ((test_variable * 1.0) / (test_variable_expression * 1.0)) * 100.0;
+        
+        // logging
+        log("test diff");
+        log(test_diff);
+
+        // nested conditions
+        if(test_diff == 50.0) {
+            log("value matches. updating original value");
+            test_diff = test_diff + 50.0;
+        }
+    }
+
+    // for loops
+    for_loop_value = 0;
+    
+    for(i=0, i<test_variable_expression, i=i+1) {
+        if(i % 2 == 0) {
+            for_loop_value = for_loop_value + 1;
+        }
+    }
 ```
