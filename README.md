@@ -39,7 +39,7 @@ The ***snapshot version*** has not been released yet.
 ```
 
 Sample Script
-```
+```javascript
     // init variables
     test_variable = 14;
     test_variable_expression = test_variable * 2;
@@ -78,7 +78,7 @@ Sample Script
 ```
 
 Usage
-```
+```java
     public static void main(String[] args) {
         
         ScriptCompiler compiler = new ScriptCompiler("basic_udf", "examples/src/main/resources", new HashMap<>());
