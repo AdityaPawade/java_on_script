@@ -69,6 +69,12 @@ Sample Script
             for_loop_value = for_loop_value + 1;
         }
     }
+
+    // support for custom UDFs
+    udf_value = custom_udf(var_1: test_variable, var_2: test_variable_expression);
+
+    log("udf value");
+    log(udf_value);
 ```
 
 Usage
