@@ -1,4 +1,4 @@
-# Java on Script  [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) ![Maven Central](https://img.shields.io/maven-central/v/com.adtsw/jos?color=blue&label=Version) ![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/com.adtsw/jos?label=Snapshot&server=https%3A%2F%2Foss.sonatype.org%2F)
+# Java on Script  [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) ![Maven Central](https://img.shields.io/maven-central/v/com.adtsw.jos/dsl?color=blue&label=Version) ![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/com.adtsw.jos/dsl?label=Snapshot&server=https%3A%2F%2Foss.sonatype.org%2F)
 
 
 ***Simple scripting library for Java programs***
@@ -16,8 +16,8 @@ JoS is available on [Maven Central](http://search.maven.org/#search). You just h
 
 ```xml
 <dependency>
-  <groupId>com.adtsw</groupId>
-  <artifactId>jos</artifactId>
+  <groupId>com.adtsw.jos</groupId>
+  <artifactId>dsl</artifactId>
   <version>1.0.2</version>
 </dependency>
 ```
@@ -32,8 +32,8 @@ For ***snapshots***, add the following repository to your `pom.xml` file.
 The ***snapshot version*** has not been released yet.
 ```xml
 <dependency>
-  <groupId>com.adtsw</groupId>
-  <artifactId>jos</artifactId>
+  <groupId>com.adtsw.jos</groupId>
+  <artifactId>dsl</artifactId>
   <version>TBD</version>
 </dependency>
 ```
