@@ -189,8 +189,7 @@ public class ScriptCompiler {
             try {
                 ExpressionEvaluator evaluator = new ExpressionEvaluator();
                 Object evaluationResult = evaluator.evaluate(objectsContext.getCompiledLexemes());
-                compilationContext.getVariables().put(objectsContext.getVariableName(),
-                        String.valueOf(evaluationResult));
+                compilationContext.getVariables().put(objectsContext.getVariableName(),evaluationResult);
             } catch (RuntimeException re) {
                 compilationContext.getRunTimeVariables().add(objectsContext.getVariableName());
             }
@@ -330,10 +329,10 @@ public class ScriptCompiler {
             Object lexeme = originalLexemes[i];
             Object computedVariableValue = computedVariables.get(lexeme);
             if (computedVariableValue != null) {
-                String lexemeVariableValue = String.valueOf(computedVariableValue);
+                //String lexemeVariableValue = String.valueOf(computedVariableValue);
                 objectsContext.getComputedObjects().add(String.valueOf(lexeme));
                 //objectValue = objectValue.replaceAll("\\b" + lexeme + "\\b", lexemeVariableValue);
-                compiledLexemes[i] = lexemeVariableValue;
+                compiledLexemes[i] = computedVariableValue;
             } else if (yetToBeComputedVariables != null && yetToBeComputedVariables.contains(lexeme)) {
                 objectsContext.getYetToBeComputedObjects().add(String.valueOf(lexeme));
                 compiledLexemes[i] = lexeme;
