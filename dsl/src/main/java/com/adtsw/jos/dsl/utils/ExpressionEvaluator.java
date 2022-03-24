@@ -99,6 +99,8 @@ public class ExpressionEvaluator {
                 executionStack.push(null);
             } else if(token instanceof Double){
                 executionStack.push(token);
+            } else if(token instanceof Long){
+                executionStack.push(token);
             } else if(token instanceof Float) {
                 executionStack.push(token);
             } else if(token instanceof Integer) {
@@ -228,10 +230,10 @@ public class ExpressionEvaluator {
                 result = ArithmeticUtil.lessThanOrEqualTo((Number) operand2, (Number) operand1);
                 break;
             case "==":
-                result = (operand2.equals(operand1));
+                result = ArithmeticUtil.equalTo((Number) operand2, (Number) operand1);
                 break;
             case "!=":
-                result = (!operand2.equals(operand1));
+                result = !ArithmeticUtil.equalTo((Number) operand2, (Number) operand1);
                 break;
             case "||":
                 result = ((Boolean) operand2 || (Boolean) operand1);

@@ -38,5 +38,8 @@ public class ExpressionEvaluatorTest {
 
         result = evaluator.evaluate(Arrays.asList(2.0, ">=", 1.0, "&&", "!", false).toArray());
         Assert.assertTrue((Boolean) result);
+        
+        result = evaluator.evaluate(Arrays.asList(1647923160L, "%", 2.0, "==", 0).toArray());
+        Assert.assertTrue((Boolean) result);
     }
 }
