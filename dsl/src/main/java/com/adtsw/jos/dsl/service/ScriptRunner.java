@@ -3,8 +3,6 @@ package com.adtsw.jos.dsl.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.adtsw.jos.dsl.model.contexts.FunctionContext;
@@ -115,7 +113,8 @@ public class ScriptRunner {
     private void executeIfBlock(ScriptLineContext lineContext, int recursionDepth) {
         Object[] originalLexemes = lineContext.getFunctionContext().getOriginalArgs()[0].getLexemes();
         Object[] compiledLexemes = replaceRuntimeVariables(originalLexemes);
-        Object evaluationResult = (new ExpressionEvaluator()).evaluate(compiledLexemes);
+        ExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
+        Object evaluationResult = expressionEvaluator.evaluate(compiledLexemes);
         //logger.trace(evaluationResult);
         if((Boolean) evaluationResult) {
             List<ScriptLineContext> blockLines = getRunTimeBlockLines(lineContext);
@@ -136,8 +135,14 @@ public class ScriptRunner {
         for (int i = 0; i < originalLexemes.length; i++) {
             Object lexeme = originalLexemes[i];
             if(lexeme instanceof String) {
-                Object computedVariableValue = runtimeContext.getRunTimeVariables().get((String) lexeme);
-                compiledLexemes[i] = Objects.requireNonNullElse(computedVariableValue, lexeme);
+                String lexemeString = (String) lexeme;
+                Map<String, Object> runTimeVariables = runtimeContext.getRunTimeVariables();
+                if(!runTimeVariables.containsKey(lexemeString)) {
+                    compiledLexemes[i] = lexemeString;    
+                } else {
+                    Object computedVariableValue = runTimeVariables.get(lexemeString);
+                    compiledLexemes[i] = computedVariableValue;
+                }
             } else {
                 compiledLexemes[i] = lexeme;
             }
