@@ -12,6 +12,6 @@ public class SetValueFunction extends AbstractFunctionDefinition {
         String objectName = lineContext.getVariableContext().getName();
         Object objectValue = lineContext.getFunctionContext().getOriginalArgs()[0].getLexemes()[0];
         objectValue = getObject(runtimeContext, objectValue);
-        runtimeContext.getRunTimeVariables().put(objectName, objectValue);
+        runtimeContext.setVariableValue(objectName, objectValue);
     }
 }

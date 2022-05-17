@@ -19,7 +19,7 @@ public class BasicExpressions {
         ScriptContext scriptContext = compiler.compile();
         ScriptRunner scriptRunner = new ScriptRunner(scriptContext, new ScriptInput(new HashMap<>()), new HashMap<>());
         scriptRunner.run();
-        Object test_variable_expression_value = scriptRunner.getRuntimeContext().getRunTimeVariables().get("test_variable_copy_expression");
+        Object test_variable_expression_value = scriptRunner.getRuntimeContext().getVariableValue("test_variable_copy_expression");
         System.out.println("value accessed from code : " + test_variable_expression_value);
     }
 }

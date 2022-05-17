@@ -19,7 +19,7 @@ public abstract class AbstractFunctionDefinition {
 
     protected Object getObject(ScriptRuntimeContext runtimeContext, Object input) {
         if(input instanceof String) {
-            Object runtimeVariable = runtimeContext.getRunTimeVariables().get((String) input);
+            Object runtimeVariable = runtimeContext.getVariableValue((String) input);
             if(runtimeVariable != null) {
                 input = runtimeVariable;
             }
@@ -33,7 +33,7 @@ public abstract class AbstractFunctionDefinition {
         for (int i = 0; i < originalLexemes.length; i++) {
             Object lexeme = originalLexemes[i];
             if(lexeme instanceof String) {
-                Object computedVariableValue = runtimeContext.getRunTimeVariables().get((String) lexeme);
+                Object computedVariableValue = runtimeContext.getVariableValue((String) lexeme);
                 compiledLexemes[i] = Objects.requireNonNullElse(computedVariableValue, lexeme);
             } else {
                 compiledLexemes[i] = lexeme;

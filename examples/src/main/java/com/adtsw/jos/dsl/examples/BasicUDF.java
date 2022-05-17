@@ -29,12 +29,12 @@ public class BasicUDF {
                     String variableName = lineContext.getVariableContext().getName();
                     Integer var1 = (Integer) getArgValue(functionContext, runtimeContext, 0);
                     Integer var2 = (Integer) getArgValue(functionContext, runtimeContext, 1);
-                    runtimeContext.getRunTimeVariables().put(variableName, var1 + var2);
+                    runtimeContext.setVariableValue(variableName, var1 + var2);
                 }
             });
         }});
         scriptRunner.run();
-        Object udf_value = scriptRunner.getRuntimeContext().getRunTimeVariables().get("udf_value");
+        Object udf_value = scriptRunner.getRuntimeContext().getVariableValue("udf_value");
         System.out.println("value accessed from code : " + udf_value);
     }
 }

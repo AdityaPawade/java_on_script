@@ -27,7 +27,7 @@ public class ScriptTest {
         ScriptContext scriptContext = compiler.compile();
         ScriptRunner scriptRunner = new ScriptRunner(scriptContext, new ScriptInput(new HashMap<>()), new HashMap<>());
         scriptRunner.run();
-        Object test_variable_expression_value = scriptRunner.getRuntimeContext().getRunTimeVariables().get("test_variable_copy_expression");
+        Object test_variable_expression_value = scriptRunner.getRuntimeContext().getVariableValue("test_variable_copy_expression");
         Assert.assertEquals(28, test_variable_expression_value);
     }
 
@@ -40,7 +40,7 @@ public class ScriptTest {
         ScriptContext scriptContext = compiler.compile();
         ScriptRunner scriptRunner = new ScriptRunner(scriptContext, new ScriptInput(new HashMap<>()), new HashMap<>());
         scriptRunner.run();
-        Object for_loop_value = scriptRunner.getRuntimeContext().getRunTimeVariables().get("for_loop_value");
+        Object for_loop_value = scriptRunner.getRuntimeContext().getVariableValue("for_loop_value");
         Assert.assertEquals(14, for_loop_value);
     }
 
@@ -53,7 +53,7 @@ public class ScriptTest {
         ScriptContext scriptContext = compiler.compile();
         ScriptRunner scriptRunner = new ScriptRunner(scriptContext, new ScriptInput(new HashMap<>()), new HashMap<>());
         scriptRunner.run();
-        Object incremental_variable = scriptRunner.getRuntimeContext().getRunTimeVariables().get("incremental_variable");
+        Object incremental_variable = scriptRunner.getRuntimeContext().getVariableValue("incremental_variable");
         Assert.assertEquals(1, incremental_variable);
     }
 
@@ -72,12 +72,12 @@ public class ScriptTest {
                     String variableName = lineContext.getVariableContext().getName();
                     Integer var1 = (Integer) getArgValue(functionContext, runtimeContext, 0);
                     Integer var2 = (Integer) getArgValue(functionContext, runtimeContext, 1);
-                    runtimeContext.getRunTimeVariables().put(variableName, var1 + var2);
+                    runtimeContext.setVariableValue(variableName, var1 + var2);
                 }
             });
         }});
         scriptRunner.run();
-        Object udf_value = scriptRunner.getRuntimeContext().getRunTimeVariables().get("udf_value");
+        Object udf_value = scriptRunner.getRuntimeContext().getVariableValue("udf_value");
         Assert.assertEquals(42, udf_value);
     }
 
@@ -90,7 +90,7 @@ public class ScriptTest {
         ScriptContext scriptContext = compiler.compile();
         ScriptRunner scriptRunner = new ScriptRunner(scriptContext, new ScriptInput(new HashMap<>()), new HashMap<>());
         scriptRunner.run();
-        Object test_diff = scriptRunner.getRuntimeContext().getRunTimeVariables().get("test_diff");
+        Object test_diff = scriptRunner.getRuntimeContext().getVariableValue("test_diff");
         Assert.assertEquals(100.0, test_diff);
     }
 }

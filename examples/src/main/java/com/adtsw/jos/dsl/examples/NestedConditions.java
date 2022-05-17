@@ -19,7 +19,7 @@ public class NestedConditions {
         ScriptContext scriptContext = compiler.compile();
         ScriptRunner scriptRunner = new ScriptRunner(scriptContext, new ScriptInput(new HashMap<>()), new HashMap<>());
         scriptRunner.run();
-        Object test_diff = scriptRunner.getRuntimeContext().getRunTimeVariables().get("test_diff");
+        Object test_diff = scriptRunner.getRuntimeContext().getVariableValue("test_diff");
         System.out.println("value accessed from code : " + test_diff);
     }
 }

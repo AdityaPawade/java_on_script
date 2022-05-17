@@ -21,7 +21,7 @@ public class BasicIfConditions {
         //ScriptContext scriptContext = compiler.compile();
         ScriptRunner scriptRunner = new ScriptRunner(scriptContext, new ScriptInput(new HashMap<>()), new HashMap<>());
         scriptRunner.run();
-        Object incremental_variable = scriptRunner.getRuntimeContext().getRunTimeVariables().get("incremental_variable");
+        Object incremental_variable = scriptRunner.getRuntimeContext().getVariableValue("incremental_variable");
         System.out.println("value accessed from code : " + incremental_variable);
     }
 }

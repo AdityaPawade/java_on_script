@@ -35,8 +35,8 @@ public class ScriptRunner {
                         Map<String, AbstractFunctionDefinition> customFunctionDefinitions) {
         this.scriptContext = scriptContext;
         this.runtimeContext = new ScriptRuntimeContext();
-        this.runtimeContext.getRunTimeVariables().putAll(scriptContext.getVariables());
-        this.runtimeContext.getRunTimeVariables().putAll(input.getDefaultVariables());
+        this.runtimeContext.setVariableValues(scriptContext.getVariables());
+        this.runtimeContext.setVariableValues(input.getDefaultVariables());
         this.functionDefinitions = new HashMap<>() {{
             put("LOG", new LogFunction());
             put("SETVALUE", new SetValueFunction());
@@ -136,11 +136,10 @@ public class ScriptRunner {
             Object lexeme = originalLexemes[i];
             if(lexeme instanceof String) {
                 String lexemeString = (String) lexeme;
-                Map<String, Object> runTimeVariables = runtimeContext.getRunTimeVariables();
-                if(!runTimeVariables.containsKey(lexemeString)) {
+                if(!runtimeContext.doesVariableExist(lexemeString)) {
                     compiledLexemes[i] = lexemeString;    
                 } else {
-                    Object computedVariableValue = runTimeVariables.get(lexemeString);
+                    Object computedVariableValue = runtimeContext.getVariableValue(lexemeString);
                     compiledLexemes[i] = computedVariableValue;
                 }
             } else {

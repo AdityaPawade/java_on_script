@@ -19,7 +19,7 @@ public class BasicForLoop {
         ScriptContext scriptContext = compiler.compile();
         ScriptRunner scriptRunner = new ScriptRunner(scriptContext, new ScriptInput(new HashMap<>()), new HashMap<>());
         scriptRunner.run();
-        Object for_loop_value = scriptRunner.getRuntimeContext().getRunTimeVariables().get("for_loop_value");
+        Object for_loop_value = scriptRunner.getRuntimeContext().getVariableValue("for_loop_value");
         System.out.println("value accessed from code : " + for_loop_value);
     }
 }
