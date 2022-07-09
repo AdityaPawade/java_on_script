@@ -16,7 +16,7 @@
 
     <groupId>com.adtsw.jos</groupId>
     <artifactId>jos</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     
     <url>github.com/AdityaPawade/javaOnScript</url>
     <scm>
@@ -44,7 +44,7 @@
         <java.version>11</java.version>
         <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
         <exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
-        <jcommons.version>1.0.17</jcommons.version>
+        <jcommons.version>1.0.18</jcommons.version>
     </properties>
 
     <repositories>
@@ -78,12 +78,12 @@
             <dependency>
                 <groupId>com.adtsw.jos</groupId>
                 <artifactId>dsl</artifactId>
-                <version>1.0.7</version>
+                <version>1.0.8</version>
             </dependency>
             <dependency>
                 <groupId>com.adtsw.jos</groupId>
                 <artifactId>examples</artifactId>
-                <version>1.0.7</version>
+                <version>1.0.8</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
