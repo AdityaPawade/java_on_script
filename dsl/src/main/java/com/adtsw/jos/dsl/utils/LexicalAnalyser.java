@@ -12,7 +12,10 @@ public class LexicalAnalyser {
 
     private static final String variableNameRegex = "[a-zA-Z0-9\\_\\.\\\"\\ ]+";
     private static final String numericRegex = "(-)?([0-9]*[.])?[0-9]+";
+    
     private static final String variableNameOrNumericValue = "(" + variableNameRegex + ")|(" + numericRegex + ")";
+    private static final Pattern variableNameOrNumericValuePattern = Pattern.compile(variableNameOrNumericValue);
+                
     private static final String arithmeticOperatorRegex = "(\\+)|(\\-)|(\\*)|(\\/)|(\\^)|(\\%)";
     private static final String booleanOperatorRegex = "(\\=\\=)|(\\!\\=)|(\\<\\=)|(\\>\\=)|(\\<)|(\\>)|(\\&\\&)|(\\|\\|)|(\\!)|(\\=)";
     private static final String bracketsRegex = "(\\()|(\\))";
@@ -33,7 +36,7 @@ public class LexicalAnalyser {
             lexemeCharCount = lexemeCharCount + lexeme.length();
             if(lexeme.startsWith("-") && lexeme.length() > 1 && lexemes.size() > 0) {
                 String lastLexeme = lexemes.get(lexemes.size() - 1);
-                if(Pattern.compile(variableNameOrNumericValue).matcher(lastLexeme).matches()) {
+                if(variableNameOrNumericValuePattern.matcher(lastLexeme).matches()) {
                     lexemes.add("-");
                     lexemes.add(lexeme.substring(1));
                 } else {

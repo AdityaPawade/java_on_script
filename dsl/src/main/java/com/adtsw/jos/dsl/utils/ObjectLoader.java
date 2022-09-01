@@ -1,14 +1,18 @@
 package com.adtsw.jos.dsl.utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Pattern;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ObjectLoader {
 
     private static final Logger logger = LogManager.getLogger(ObjectLoader.class);
+    
+    private static final String numericRegex = "(-)?([0-9]*[.])?[0-9]+";
+    private static final Pattern numericValuePattern = Pattern.compile(numericRegex);
 
     public static Object getObject(String stringElement) {
         return getObject(stringElement, (Map<String, Object>) null);
@@ -19,23 +23,25 @@ public class ObjectLoader {
         boolean converted = false;
         Object runtimeObject = null;
 
+        boolean isNumeric = numericValuePattern.matcher(stringElement).matches();
+
         if (Objects.equals(stringElement, "null")) {
             converted = true;
         }
-        if(!converted) {
+        if(isNumeric && !converted) {
             try{
                 runtimeObject = Integer.parseInt(stringElement);
                 converted = true;
             } catch(NumberFormatException ignored){}
         }
-        if(!converted) {
+        if(isNumeric && !converted) {
             try {
                 runtimeObject = Long.parseLong(stringElement);
                 converted = true;
             } catch (NumberFormatException ignored) {
             }
         }
-        if(!converted) {
+        if(isNumeric && !converted) {
             try{
                 runtimeObject = Double.parseDouble(stringElement);
                 converted = true;

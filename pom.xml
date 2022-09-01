@@ -16,7 +16,7 @@
 
     <groupId>com.adtsw.jos</groupId>
     <artifactId>jos</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     
     <url>github.com/AdityaPawade/javaOnScript</url>
     <scm>
@@ -78,12 +78,12 @@
             <dependency>
                 <groupId>com.adtsw.jos</groupId>
                 <artifactId>dsl</artifactId>
-                <version>1.0.8</version>
+                <version>1.0.9</version>
             </dependency>
             <dependency>
                 <groupId>com.adtsw.jos</groupId>
                 <artifactId>examples</artifactId>
-                <version>1.0.8</version>
+                <version>1.0.9</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
