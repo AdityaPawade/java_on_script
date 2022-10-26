@@ -65,7 +65,8 @@ public class ScriptRunner {
                         "took " + (l2 - l1) + " [ " + l1 + " to " + l2 + " ]");
                 }
             } catch (Exception e) {
-                logger.warn("Exception processing line " + lineContext.getLineNumber() + ":" + lineContext.getLine(), e);
+                logger.warn("Exception processing line " + lineContext.getLineNumber() + ":" + 
+                    lineContext.getLine() + " : " + e.getMessage());
             }
         }
     }

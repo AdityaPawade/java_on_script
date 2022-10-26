@@ -200,33 +200,43 @@ public class ExpressionEvaluator {
         Object result;
         switch (operator) {
             case "+":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.add((Number) operand2, (Number) operand1);
                 break;
             case "-":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.subtract((Number) operand2, (Number) operand1);
                 break;
             case "*":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.multiply((Number) operand2, (Number) operand1);
                 break;
             case "/":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.divide((Number) operand2, (Number) operand1);
                 break;
             case "^":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.pow((Number) operand2, (Number) operand1);
                 break;
             case "%":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.mod((Number) operand2, (Number) operand1);
                 break;
             case ">":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.moreThan((Number) operand2, (Number) operand1);
                 break;
             case "<":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.lessThan((Number) operand2, (Number) operand1);
                 break;
             case ">=":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.moreThanOrEqualTo((Number) operand2, (Number) operand1);
                 break;
             case "<=":
+                checkNullOperand(operand1, operand2);
                 result = ArithmeticUtil.lessThanOrEqualTo((Number) operand2, (Number) operand1);
                 break;
             case "==":
@@ -236,15 +246,23 @@ public class ExpressionEvaluator {
                 result = !ArithmeticUtil.equalTo((Number) operand2, (Number) operand1);
                 break;
             case "||":
+                checkNullOperand(operand1, operand2);
                 result = ((Boolean) operand2 || (Boolean) operand1);
                 break;
             case "&&":
+                checkNullOperand(operand1, operand2);
                 result = ((Boolean) operand2 && (Boolean) operand1);
                 break;
             default:
                 throw new IllegalArgumentException(token + " is not an operator or is not handled");
         }
         return result;
+    }
+
+    private void checkNullOperand(Object operand1, Object operand2) {
+        if(operand1 == null || operand2 == null) {
+            throw new RuntimeException("Cannot operate on null operands : " + operand1 + " and " + operand2);
+        }
     }
 
     private Object executeUnaryOperation(Object token, String operator, Boolean operand1) {
