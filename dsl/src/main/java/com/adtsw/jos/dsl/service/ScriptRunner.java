@@ -68,9 +68,11 @@ public class ScriptRunner {
                 }
                 // this.runtimeContext.appendToRuntimeLog("TIME", String.valueOf(executionTime));
             } catch (Exception e) {
-                logger.warn("Exception processing line " + lineContext.getLineNumber() + ":" + 
-                    lineContext.getLine() + " : " + e.getMessage());
+                // logger.warn("Exception processing line " + lineContext.getLineNumber() + ":" + 
+                    // lineContext.getLine() + " : " + e.getMessage());
                 this.runtimeContext.appendToRuntimeLog("FAIL", e.getMessage());
+                throw new RuntimeException("Exception processing line " + lineContext.getLineNumber() + ":" + 
+                    lineContext.getLine() + " : " + e.getMessage());
             }
         }
     }
