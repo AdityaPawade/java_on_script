@@ -9,9 +9,10 @@ public class SetValueFunction extends AbstractFunctionDefinition {
 
     @Override
     public void execute(ScriptLineContext lineContext, ScriptRuntimeContext runtimeContext) {
-        String objectName = lineContext.getVariableContext().getName();
-        Object objectValue = lineContext.getFunctionContext().getOriginalArgs()[0].getLexemes()[0];
-        objectValue = getObject(runtimeContext, objectValue);
-        runtimeContext.setVariableValue(objectName, objectValue);
+        String variableName = lineContext.getVariableContext().getName();
+        Object variableValue = lineContext.getFunctionContext().getOriginalArgs()[0].getLexemes()[0];
+        variableValue = getObject(runtimeContext, variableValue);
+        runtimeContext.setVariableValue(variableName, variableValue);
+        runtimeContext.appendToRuntimeLog("SETV",  variableName + " = " + String.valueOf(variableValue));
     }
 }

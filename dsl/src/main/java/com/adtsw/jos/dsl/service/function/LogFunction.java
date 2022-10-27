@@ -17,5 +17,6 @@ public class LogFunction extends AbstractFunctionDefinition {
         FunctionContext functionContext = lineContext.getFunctionContext();
         Object value = getArgValue(functionContext, runtimeContext, 0);
         logger.debug(value);
+        runtimeContext.appendToRuntimeLog("PRNT", String.valueOf(value));
     }
 }

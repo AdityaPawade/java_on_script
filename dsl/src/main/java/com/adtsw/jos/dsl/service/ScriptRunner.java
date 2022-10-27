@@ -56,17 +56,21 @@ public class ScriptRunner {
         for (int i = 0; i < scriptLineContexts.size(); i++) {
             ScriptLineContext lineContext = scriptLineContexts.get(i);
             try {
-                long l1 = System.currentTimeMillis();
+                long executionStartMillis = System.currentTimeMillis();
+                this.runtimeContext.appendToRuntimeLog("LINE", "[" + lineContext.getLineNumber() + "] " + lineContext.getLine());
                 evaluateLineContext(lineContext, recursionDepth);
-                long l2 = System.currentTimeMillis();
-                if((l2 - l1) >= 40) {
+                long executionEndMillis = System.currentTimeMillis();
+                long executionTime = executionEndMillis - executionStartMillis;
+                if(executionTime >= 40) {
                     logger.warn(" delayed execution at recursion [" + recursionDepth + "], \n" + 
                         lineContext.getLineNumber() + " : " + lineContext.getLine() + "\n" + 
-                        "took " + (l2 - l1) + " [ " + l1 + " to " + l2 + " ]");
+                        "took " + executionTime + " [ " + executionStartMillis + " to " + executionEndMillis + " ]");
                 }
+                // this.runtimeContext.appendToRuntimeLog("TIME", String.valueOf(executionTime));
             } catch (Exception e) {
                 logger.warn("Exception processing line " + lineContext.getLineNumber() + ":" + 
                     lineContext.getLine() + " : " + e.getMessage());
+                this.runtimeContext.appendToRuntimeLog("FAIL", e.getMessage());
             }
         }
     }
@@ -116,8 +120,10 @@ public class ScriptRunner {
         Object[] compiledLexemes = replaceRuntimeVariables(originalLexemes);
         ExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
         Object evaluationResult = expressionEvaluator.evaluate(compiledLexemes);
+        Boolean booleanResult = (Boolean) evaluationResult;
+        this.runtimeContext.appendToRuntimeLog("COND", String.valueOf(booleanResult));
         //logger.trace(evaluationResult);
-        if((Boolean) evaluationResult) {
+        if(booleanResult) {
             List<ScriptLineContext> blockLines = getRunTimeBlockLines(lineContext);
             evaluateLineContexts(blockLines, recursionDepth + 1);
         }
